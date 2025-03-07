@@ -40,3 +40,18 @@ class Solution(object):
                 stack.append(c)
 
         return True if not stack else False
+
+
+
+"""
+Brute Force approach
+Look at the string and check for the pairs, replace them with empty strings
+return the string
+"""
+
+def isValid(s: str) -> bool:
+    while '()' in s or '{}' in s or '[]' in s:
+        s = s.replace('()', '')
+        s = s.replace('{}', '')
+        s = s.replace('[]', '')
+    return s == ''
