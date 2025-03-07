@@ -55,3 +55,23 @@ def isValid(s: str) -> bool:
         s = s.replace('{}', '')
         s = s.replace('[]', '')
     return s == ''
+
+
+"""
+Alternative approach to the one on top - with notes for clarity
+"""
+
+def isValid(s: str) -> bool:
+    stack = []
+    closed = {']': '[', ')': '(', '}': '{'}
+
+    for i in s:
+        if i not in closed:  # If it's an opening bracket, push it onto the stack
+            stack.append(i)
+        else:  # If it's a closing bracket
+            if stack and stack[-1] == closed[i]:  # Match with the last opening bracket
+                stack.pop()
+            else:  # Mismatch or empty stack
+                return False
+
+    return not stack  # If the stack is empty, all brackets are properly matched
